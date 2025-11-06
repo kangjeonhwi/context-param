@@ -1,35 +1,36 @@
-# 🔬 Exp1: Comparative Analysis of Knowledge Storage and Retrieval in Adapters
+# Exp1: Comparative Analysis of Knowledge Storage and Retrieval in Adapters
 
-## 🚀 Overview
+## 1. Overview
 
-The `Exp1` directory within this repository is dedicated to experiments comparing how effectively different fine-tuning adapters (e.g., LoRA, DoRA) store and retrieve specific contextual knowledge in Large Language Models (LLMs).
+This `Exp1` experiment aims to analyze the mechanisms by which fine-tuning adapters (e.g., LoRA, DoRA) for Large Language Models (LLMs) store and retrieve specific context (knowledge).
 
-The primary objective is to quantitatively and qualitatively evaluate the impact of adapter type, prompt structure, training epochs, and parameter characteristics on knowledge storage and recall performance.
+It comprehensively validates the impact of various factors on knowledge storage efficiency, including adapter type, prompt structure, training parameters (epochs), and the relationship between training loss and actual performance.
 
----
+## 2. Key Research Questions
 
-## 🧐 Key Research Questions
+This experiment aims to address the following key questions:
 
-This set of experiments aims to answer the following core questions:
+### 2.1. LoRA vs. DoRA: Comparative Storage Efficiency
+* **Question:** Which adapter, LoRA or DoRA, stores contextual (knowledge) information more efficiently?
+* **Validation:** Verify if a statistically significant difference exists in knowledge recall performance between the two adapters.
 
-### 1. LoRA vs. DoRA: Contextual Storage Efficacy
-* **Question:** Does LoRA or DoRA more effectively store contextual information (knowledge)?
-* **Validation:** Determine if there is a statistically significant difference in knowledge recall performance between the two adapters.
+### 2.2. Analysis of Prompt Structure Influence
+* **Question:** Does the structure of the prompt used during the knowledge storage (training) phase have a significant impact on final knowledge recall performance?
+* **Hypothesis:** If a significant impact is observed, it may suggest that the model has learned a mechanism to retrieve knowledge at the parameter level in response to specific prompts.
 
-### 2. The Influence of Prompts
-* **Question:** Does the prompt structure used during training have a significant impact on knowledge storage?
-* **Hypothesis:** If a significant influence is observed, it may suggest that the model has learned to retrieve knowledge at the parameter level to recall specific information.
+### 2.3. Relationship between Epochs and Overfitting
+* **Question:** If the number of training epochs is increased to minimize loss and overfit on specific knowledge, does the recall performance for that knowledge improve proportionally?
+* **Validation:** If performance improvement is observed, explore and identify the optimal number of epochs to achieve peak performance.
 
-### 3. Epoch Comparison: Overfitting vs. Performance
-* **Question:** If we increase the number of epochs to lower the loss (i.e., overfit on the knowledge), does the performance on related questions improve?
-* **Hypothesis:** Improvement is expected (Hypothesis: True). If so, what is the optimal number of epochs for knowledge retention?
+### 2.4. Validation of LoRA Parameter Efficacy
+* **Question:** Do the individual parameters within a trained LoRA adapter actually encode meaningful information?
+* **Validation:** (Hypothesis) If the parameters store valid information, a significant difference (e.g., variance) should be observable between adapter parameters trained on different contexts. This will be verified through comparative analysis.
 
-### 4. LoRA Parameter Analysis
-* **Question:** Do the individual parameters within a trained LoRA adapter actually hold valid, distinct information?
-* **Validation:** (Hypothesis) If parameters store meaningful information, the variance or difference between parameters trained on *different* contexts should be significant.
-
-### 5. Dyprag vs. LoRA
+### 2.5. Dyprag (Pragmatic-trained LoRA) Performance Comparison
 * **Definition:** Dyprag = LoRA trained using a "Pragmatic" method.
-* **Question:** Is there a significant performance difference in knowledge storage and retrieval when comparing Dyprag to standard LoRA?
-* **Follow-up:** If a significant improvement is noted, this will form the basis for Experiment 2 (Exp2).
+* **Question:** Does the "Pragmatic" training method show a significant difference in knowledge storage and retrieval performance compared to the standard LoRA method?
+* **Follow-up:** If a significant performance improvement is observed, it will serve as the basis for a follow-up experiment (Exp2).
 
+### 2.6. Correlation between Training Loss and Recall Accuracy
+* **Question:** Does knowledge that exhibited high loss during training (i.e., items likely unfamiliar to the model or outside its knowledge boundary) actually show low recall accuracy in both "Naive" and "Prompted" inference settings?
+* **Validation:** Analyze the correlation between training loss and final recall accuracy.
