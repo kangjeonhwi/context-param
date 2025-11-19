@@ -1,0 +1,44 @@
+# configs/config.yaml
+
+# debug config
+debug: true
+debug_samples: 2  
+# 'all', 'encode', 'inference'
+mode : "encode"
+
+# GPU config
+gpu:
+  available_gpus: [0, 1, 2, 3]
+
+# model config
+model:
+  model_id: "meta-llama/Llama-3.1-8B-Instruct"
+  max_context_length: 2048
+
+# data config
+data:
+  dataset_path: "/mnt/raid5/kangjh/Research/Context_parameterization/hotpotqa_merged"
+  num_samples: 200
+  sample_stride: 1
+
+# LoRA config
+lora:
+  lora_r: 16
+  lora_alpha: 32
+  lora_dropout: 0.05
+  learning_rate: 0.0002
+  target_modules: ["gate_proj", "up_proj", "down_proj"]
+
+# training config
+training:
+  epoch_settings: [3, 7, 15, 30]
+  adapter_types: ["LoRA", "DoRA"]
+  train_prompt_settings: [false, true]
+  loss_masking_settings: ["all"]
+  train_prompt_prefix: "Please memorize the following context carefully and answer the question based on it. Context: "
+
+
+# output config
+output_lora_dir: "/mnt/raid5/kangjh/Research/context-param/Exp1/adapters"
+output_dir: "/mnt/raid5/kangjh/Research/context-param/Exp1/results"
+output_csv_filename: "debug.csv"
